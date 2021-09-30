@@ -1,0 +1,43 @@
+﻿@model IEnumerable<NetC.JuniorDeveloperExam.Web.BlogPost>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td class="text-center">
+            @{ string dateStr = item.Date.ToString("dd/MM/yy HH:mm"); }
+            @Html.DisplayFor(modelItem => dateStr)
+        </td>
+        <td class="text-center">
+            @{ string commentCount = item.Comments.Count.ToString(); }
+            @Html.DisplayFor(modelItem => commentCount)
+        </td>
+        <td>
+            @Html.ActionLink("View", "Blog", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
